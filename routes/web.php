@@ -6,6 +6,8 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ThankYouController;
+use Illuminate\Support\Facades\View;
+use App\Models\Information;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,11 @@ use App\Http\Controllers\ThankYouController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+View::composer('layouts.header_footer', function ($view) {
+    $information = Information::first();
+    $view->with('information', $information);
+});
 
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/about_us', [WelcomeController::class, 'about_us']);

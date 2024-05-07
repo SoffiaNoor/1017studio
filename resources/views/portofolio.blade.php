@@ -22,8 +22,8 @@
             </div>
             <details class="dropdown mb-32">
                 <summary id="dropdownSummary"
-                    class="m-1 btn bg-[#FFE200] hover:bg-[#FFE200] text-black font-extrabold border-none rounded-full">Semua<i
-                        class="fa fa-caret-down" aria-hidden="true"></i></summary>
+                    class="m-1 btn bg-[#FFE200] hover:bg-[#FFE200] text-black font-extrabold border-none rounded-full">
+                    Semua<i class="fa fa-caret-down" aria-hidden="true"></i></summary>
                 <ul
                     class="p-2 shadow menu dropdown-content ease-in-out z-[1] bg-[#1c1c1c] text-white font-bold rounded-box w-52">
                     <li><a id="allItem">Semua</a></li>
@@ -31,47 +31,25 @@
                     <li><a id="websiteItem">Website</a></li>
                 </ul>
             </details>
-            <div
-                class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-0 py-6 pb-20 sm:py-8 place-content-center rounded-[2.25rem] transform lg:-translate-y-12">
-                <div id="portfolio-home" data-aos="fade-up" data-aos-duration="1000"
-                    class="flex flex-col flex-wrap sm:flex-row items-center justify-center space-y-6 sm:space-y-0 -mx-4">
-                    <div
-                        class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-1.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-2.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-3.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-1.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-2.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-3.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item website relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-4.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item website relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-5.jpg') }}" class="img-fluid" alt="">
-                    </div>
-                    <div
-                        class="portfolio-item website relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                        <img src="{{ asset('assets/img/default-port-6.jpg') }}" class="img-fluid" alt="">
-                    </div>
+            <div id="portfolio-home" data-aos="fade-up" data-aos-duration="1000"
+                class="flex flex-col flex-wrap sm:flex-row items-center justify-center space-y-6 sm:space-y-0 -mx-4">
+                @foreach($portfolio as $p)
+                @if($p->jenis_tag_id == 1)
+                <div
+                    class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
+                    <a href="{{ env('APP_URL') }}{{ $p->image }}" data-fancybox="portfolio-gallery">
+                        <img src="{{ env('APP_URL') }}{{ $p->image }}" class="img-fluid" alt="">
+                    </a>
                 </div>
+                @elseif($p->jenis_tag_id == 2)
+                <div
+                    class="portfolio-item website relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
+                    <a href="{{ env('APP_URL') }}{{ $p->image }}" data-fancybox="portfolio-gallery">
+                        <img src="{{ env('APP_URL') }}{{ $p->image }}" class="img-fluid" alt="">
+                    </a>
+                </div>
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
@@ -107,5 +85,14 @@
     function changeSummaryText(newText) {
         summary.innerHTML = `${newText}<i class="fa fa-caret-down" aria-hidden="true"></i>`;
     }
+</script>
+<script>
+    $(document).ready(function() {
+        $("[data-fancybox='portfolio-gallery']").fancybox({
+            // Options here
+            loop: true, // Enable infinite loop
+            // More options can be added as needed
+        });
+    });
 </script>
 @endsection

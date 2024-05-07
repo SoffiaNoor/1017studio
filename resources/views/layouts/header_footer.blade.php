@@ -34,6 +34,9 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
 
     <style>
         /* width */
@@ -56,6 +59,7 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #ffe100ee;
         }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -304,21 +308,18 @@
                                                     aria-hidden="true"></i>
                                                 <a class="text-white hover:text-blueGray-800 font-bold block pb-2 text-xl lg:text-right"
                                                     target="_blank"
-                                                    href="https://api.whatsapp.com/send?phone=6281938646560">081 938
-                                                    64 6560</a>
+                                                    href="{{$information->link_wa}}">{{$information->phone}}</a>
                                             </li>
                                             <li class="flex items-center lg:justify-end">
                                                 <i class="fab fa-instagram text-white text-2xl mr-2"></i>
                                                 <a class="text-white hover:text-blueGray-800 font-bold block pb-2 text-xl lg:text-right"
-                                                    href="https://www.instagram.com/studiodesign1017/"
+                                                    href="{{ $information->instagram}}"
                                                     target="_blank">studiodesign1017</a>
                                             </li>
                                             <li class="flex items-center lg:justify-end lg:mt-20">
                                                 <a class="font-bold text-white block pb-2 text-xl lg:text-right"
                                                     href="https://goo.gl/maps/your-location" target="_blank">
-                                                    Jemundo, Sawunggaling<br>
-                                                    Timur 3 RT 22 RW 04<br>
-                                                    Sepanjang - Sidoarjo
+                                                    {{ $information->address }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -342,7 +343,8 @@
     </div> --}}
 
     @yield('jquery')
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="/js/tw-elements.umd.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

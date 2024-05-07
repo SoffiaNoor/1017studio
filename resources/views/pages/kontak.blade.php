@@ -61,7 +61,7 @@
                                 class="block mb-2 text-sm font-medium text-white dark:text-gray-300">Nomor
                                 Telepon/Whatsapp</label>
                             <input type="text" name="nomor_wa" id="nomor_wa"
-                                class="input input-bordered input-warning w-full max-w-xl" placeholder="+62 000 000 000"
+                                class="input input-bordered input-warning w-full max-w-xl" placeholder="62 000 000 000"
                                 required>
                         </div>
                         <div class="sm:col-span-2">
@@ -82,8 +82,8 @@
                                 <h2 class="lg:text-2xl text-2xl text-white font-extrabold sm:pr-8 xl:pr-12">
                                     Hubungi kami sekarang</h2>
                                 <p class="mb-8 lg:mb-16 font-semibold text-white sm:text-xl"><i
-                                        class="fab fa-whatsapp text-white text-2xl mr-2" aria-hidden="true"></i>081 938
-                                    64 65 60</p>
+                                        class="fab fa-whatsapp text-white text-2xl mr-2"
+                                        aria-hidden="true"></i>{{$information->phone}}</p>
                                 <p class="mb-8 lg:mb-16 font-semibold text-white sm:text-xl"><i
                                         class="fab fa-instagram text-white text-2xl mr-2"
                                         aria-hidden="true"></i>studiodesign1017</p>
@@ -93,7 +93,7 @@
                                 <p class="mb-8 lg:mb-16 font-semibold text-white sm:text-xl"><i
                                         class="fa fa-caret-down text-white text-2xl mr-2" aria-hidden="true"></i>Klik
                                     button di bawah ini untuk konsultasi desain</p>
-                                <a href="https://api.whatsapp.com/send?phone=6281938646560"
+                                <a href="{{$information->link_wa}}"
                                     class="btn btn-warning w-full bg-[#FFE200] font-extrabold text-black hover:bg-[#c79305] border-none duration-500">Konsultasi
                                     Desain
                                 </a>

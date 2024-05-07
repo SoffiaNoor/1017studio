@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Berita;
+use App\Models\News;
 use App\Models\TagBerita;
 
 
@@ -11,17 +11,18 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $berita = Berita::all();
+        $berita = News::all();
+        $tagNews = TagBerita::all();
 
-        return view('pages.berita', compact('berita'));
+        return view('pages.berita', compact('berita', 'tagNews'));
     }
     public function detail_berita(Request $request)
     {
-        $berita = Berita::where('id', $request->id)->first();
-        $tagBerita = TagBerita::find($berita->berita_tag_id);
-        $tagBerita2 = TagBerita::find($berita->berita_tag_id_2);
+        $berita = News::where('id', $request->id)->first();
+        $tagIds = explode(',', $berita->berita_tag); // Assuming berita_tag is a comma-separated string of tag IDs
+        $tagNews = TagBerita::whereIn('id', $tagIds)->get(); // Fetch only the tags included in berita_tag
 
-        return view('pages.detail_berita', compact('berita','tagBerita','tagBerita2'));
+        return view('pages.detail_berita', compact('berita', 'tagNews'));
     }
 
     public function detail()

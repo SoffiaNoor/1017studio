@@ -18,7 +18,7 @@
               class="card lg:w-100 rounded-none bg-white border-solid border-4 border-white duration-300 hover:scale-105 ease-in-out hover:shadow-xl hover:shadow-[#8d7c00] duration-300">
               <figure>
                 <div class="h-60">
-                  <img src="{{ asset('assets/img/berita/'.$b->photo) }}" alt="Shoes" />
+                  <img src="{{env('APP_URL')}}{{$b->photo}}" alt="Shoes" />
                 </div>
               </figure>
               <div class="h-80">

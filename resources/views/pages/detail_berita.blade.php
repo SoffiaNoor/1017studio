@@ -16,7 +16,7 @@
             <div class="flex flex-col max-w-6xl mx-auto overflow-hidden rounded object-cover" data-aos="zoom-out-up"
                 data-aos-duration="1000">
                 @if($berita->photo)
-                <img src="{{ asset('assets/img/berita/'.$berita->photo) }}" alt=""
+                <img src="{{env('APP_URL')}}{{$berita->photo}}" alt=""
                     class="w-full object-cover h-60 sm:h-96 bg-white">
                 @else
                 <span>No image found!</span>
@@ -26,16 +26,14 @@
                     <div class="space-y-2">
                         <a rel="noopener noreferrer" href="#"
                             class="inline-block text-2xl font-extrabold sm:text-4xl">{{ $berita->title }}</a>
-                        @if($tagBerita)
                         <div class="flex flex-wrap space-x-2 text-sm pt-4 mt-5 lg:pt-15 text-black">
-                            <a rel="noopener noreferrer" href="#"
-                                class="bg-black hover:bg-[#1c1c1c] text-white font-bold py-2 px-4 rounded-full p-1 hover:underline">{{
-                                $tagBerita->name }}</a>
-                            <a rel="noopener noreferrer" href="#"
-                                class="bg-black hover:bg-[#1c1c1c] text-white font-bold py-2 px-4 rounded-full p-1 hover:underline">{{
-                                $tagBerita2->name }}</a>
+                            @foreach ($tagNews as $tb)
+                            <a
+                                class="bg-black hover:bg-[#1c1c1c] text-white font-bold py-2 px-4 rounded-full p-1 hover:underline">
+                                {{ $tb->name }}
+                            </a>
+                            @endforeach
                         </div>
-                        @endif
                         <p class="text-sm text-black">by
                             <a href="#" target="_blank" rel="noopener noreferrer" class="hover:underline text-black">
                                 <span>{{ $berita->author }}</span>
@@ -45,8 +43,10 @@
                     </div>
                 </div>
             </div>
-            <p class="paragraph text-white lg:text-xl text-justify "="">{{ $berita->description }}
-            </p>
+            <div class="text-white" style="font-size:15pt;text-align:justify">
+                <div class="text-white lg:text-xl text-justify">{!! $berita->description !!}
+                </div>
+            </div>
         </div>
     </div>
 </section>
