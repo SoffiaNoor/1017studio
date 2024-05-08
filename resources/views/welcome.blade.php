@@ -302,7 +302,7 @@
                                         alt="">
                                     <div
                                         class="absolute top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-[#FFE200] font-extrabold lg:text-4xl opacity-0 group-hover:opacity-100 duration-500 h-0 group-hover:bg-opacity-100 group-hover:h-full">
-                                        1017 studios
+                                        <img src="{{env('APP_URL')}}{{$information->logo_company}}" style="width:40%" />
                                     </div>
                                 </div>
                                 @endforeach

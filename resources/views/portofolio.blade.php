@@ -1,5 +1,41 @@
 @extends('layouts/header_footer')
 @section('content')
+<style>
+    .portfolio-item {
+        position: relative;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .portfolio-item:hover .overlay {
+        opacity: 1;
+        /* Show overlay on hover */
+    }
+
+    .overlay h3 {
+        margin-top: 0;
+    }
+
+    .overlay p {
+        margin-bottom: 0;
+    }
+</style>
 <section class="w-full min-h-screen py-24 bg-black">
     <div class="relative max-w-screen-xl px-4 sm:px-8 mx-auto grid gap-x-6 overflow-hidden"="">
         <div class="col-span-12 lg:col-span-6 sm:hidden mb-8"="">
@@ -39,14 +75,28 @@
                     class="portfolio-item logo relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
                     <a href="{{ env('APP_URL') }}{{ $p->image }}" data-fancybox="portfolio-gallery">
                         <img src="{{ env('APP_URL') }}{{ $p->image }}" class="img-fluid" alt="">
+                        <div class="overlay">
+                            <h3 class="text-center lg:text-xl" style="font-weight: 800">{{ $p->name }}</h3>
+                            <p class="text-center">{{ $p->description }}</p>
+                        </div>
                     </a>
                 </div>
                 @elseif($p->jenis_tag_id == 2)
                 <div
                     class="portfolio-item website relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                    <a href="{{ env('APP_URL') }}{{ $p->image }}" data-fancybox="portfolio-gallery">
-                        <img src="{{ env('APP_URL') }}{{ $p->image }}" class="img-fluid" alt="">
-                    </a>
+                    <div style="position: relative;">
+                        <a href="{{ env('APP_URL') }}{{ $p->image }}" data-fancybox="portfolio-gallery">
+                            <img src="{{ env('APP_URL') }}{{ $p->image }}" class="img-fluid" alt="">
+                            <div class="overlay">
+                                <h3 class="text-center lg:text-xl" style="font-weight: 800">{{ $p->name }}</h3>
+                                <p class="text-center">{{ $p->description }}</p>
+                                <a href="{{ $p->url }}" target="_blank"
+                                    class="mt-2 bg-[#FFE200] text-black font-bold py-2 px-4 rounded-full p-1">
+                                    Website
+                                </a>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 @endif
                 @endforeach
