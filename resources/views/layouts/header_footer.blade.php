@@ -132,15 +132,32 @@
                 transform: rotate(360deg);
             }
         }
+
+        .swing-animation {
+            animation: swing 2s infinite ease-in-out;
+            max-width: 150px;
+        }
+
+        @keyframes swing {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(15deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
     </style>
 </head>
 
 <body class="bg-white">
     <div id="loader" wire:loading
-        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-black opacity-75 flex flex-col items-center justify-center">
-        <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
-        <h2 class="text-center text-white text-xl font-extrabold">Loading...</h2>
-        <p class="text-xl text-center font-extrabold text-[#FFE200]">- 1017 studios -</p>
+        class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-black flex flex-col items-center justify-center">
+        <img src="{{env('APP_URL')}}{{$information->logo_header}}" class="swing-animation" />
     </div>
     <div id="__layout">
         <div class="min-h-screen font-sans antialiased relative">
