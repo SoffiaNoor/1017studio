@@ -25,7 +25,7 @@
                 <div class="card-body text-black ">
                   <h2 class="card-title font-extrabold lg:text-3xl">{{ $b->title }}</h2>
                   <div style="overflow-wrap: break-word;!important;text-align: justify!important;">
-                  <p class="font-semibold">{!! substr($b->description,0,300).'...'!!}</p>
+                  <p class="font-semibold">{!! substr($b->description,0,170).'...'!!}</p>
                   </div>
                   <div class="card-actions justify-end">
                     <a href="{{url('/berita/'.$b->id.'')}}"
