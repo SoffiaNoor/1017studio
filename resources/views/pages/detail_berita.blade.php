@@ -26,12 +26,14 @@
                     <div class="space-y-2">
                         <a rel="noopener noreferrer" href="#"
                             class="inline-block text-2xl font-extrabold sm:text-4xl">{{ $berita->title }}</a>
-                        <div class="flex flex-wrap space-x-2 text-sm pt-4 mt-5 lg:pt-15 text-black">
+                        <div class="flex flex-wrap text-sm pt-4 mt-5 lg:pt-15 text-black">
                             @foreach ($tagNews as $tb)
-                            <a
-                                class="bg-black hover:bg-[#1c1c1c] text-white font-bold py-2 px-4 rounded-full p-1 hover:underline">
-                                {{ $tb->name }}
-                            </a>
+                            <div class="py-3 px-1">
+                                <a
+                                    class="bg-black hover:bg-[#1c1c1c] text-white font-bold py-2 px-4 rounded-full hover:underline">
+                                    {{ $tb->name }}
+                                </a>
+                            </div>
                             @endforeach
                         </div>
                         <p class="text-sm text-black">by
