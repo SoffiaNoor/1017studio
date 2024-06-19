@@ -29,14 +29,16 @@ class WelcomeController extends Controller
     public function portofolio()
     {
         $portfolio = Portfolio::all();
+        $information = Information::first();
 
-        return view('portofolio', compact("portfolio"));
+        return view('portofolio', compact("portfolio", "information"));
     }
 
     public function testimoni()
     {
         $testimoni = Testimonial::all();
+        $information = Information::first();
 
-        return view('testimoni', compact("testimoni"));
+        return view('testimoni', compact("testimoni", "information"));
     }
 }

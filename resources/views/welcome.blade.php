@@ -293,7 +293,7 @@
                                     <div data-aos="fade-up" data-aos-once="true" data-aos-delay="700"
                                         class="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6 pt-3 pb-3 mt-2 aos-init aos-animate">
                                         <a class="lg:text-2xl duration-300 hover:scale-125 ease-in-out font-extrabold text-center rounded-full transition max-w-full px-6 py-4 bg-[#FFE200] text-black"
-                                            href="{{url('/kontak')}}">
+                                            href="{{$information->link_wa}}" target="_blank">
                                             SAYA MAU PESAN !!
                                         </a>
                                     </div>
@@ -444,7 +444,7 @@
                                 <div data-aos="zoom-out-up" data-aos-duration="2000"
                                     class="flex flex-col sm:flex-row space-y-6 sm:space-y-0 place-content-center p-10 sm:space-x-6 lg:pt-3 lg:pb-3 mt-2 aos-init aos-animate">
                                     <a class="lg:text-2xl duration-300 hover:scale-125 ease-in-out font-extrabold text-center rounded-full transition max-w-full px-6 py-4 bg-[#FFE200] text-black"
-                                        href="{{url('/kontak')}}">
+                                        href="{{$information->link_wa}}" target="_blank">
                                         SAYA MAU PESAN !!
                                     </a>
                                 </div>
@@ -459,7 +459,7 @@
                 </div>
 
                 <div class="fixed bottom-10 right-10 z-10">
-                    <a title="Chat Whatsapp" href="{{url('/kontak')}}" target="_blank"
+                    <a title="Chat Whatsapp" href="{{$information->link_wa}}" target="_blank"
                         class="block rounded-full transition-all shadow transform hover:scale-110 hover:rotate-12">
                         <img class="object-cover object-center lg:w-36 lg:h-36 w-24 h-24"
                             src="{{ asset('assets/img/order.png') }}" alt="Saya mau pesan">
@@ -496,7 +496,7 @@
                                             </li>
                                             <li>
                                                 <a class="font-bold block pb-2 text-xl" style="color:#FFE200"
-                                                    href="{{url('/kontak')}}">Saya mau pesan</a>
+                                                    href="{{$information->link_wa}}" target="_blank">Saya mau pesan</a>
                                             </li>
                                         </ul>
                                     </div>

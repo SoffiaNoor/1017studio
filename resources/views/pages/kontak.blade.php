@@ -15,6 +15,28 @@
         height: 100%;
     }
 </style>
+
+<style>
+    .custom-map {
+        width: 500px;
+        max-width: 1080px;
+        /* or any specific width you want, like 600px */
+        height: 400px;
+        /* or any specific height you want */
+        border: 0;
+    }
+
+    @media (max-width: 767px) {
+
+        /* Adjust the max-width value as needed for your mobile breakpoint */
+        .custom-map {
+            width: 100%;
+            height: 300px;
+            /* Adjust the height for mobile as needed */
+        }
+    }
+</style>
+
 @section('content')
 <section class="w-full min-h-screen py-24 bg-black">
     <div class="relative max-w-screen-xl px-4 sm:px-8 mx-auto grid gap-x-6 overflow-hidden"="">
@@ -93,15 +115,12 @@
                                 <p class="mb-8 lg:mb-16 font-semibold text-white sm:text-xl"><i
                                         class="fa fa-caret-down text-white text-2xl mr-2" aria-hidden="true"></i>Klik
                                     button di bawah ini untuk konsultasi desain</p>
-                                <a href="{{$information->link_wa}}"
+                                <a href="{{$information->link_wa}}" target="_blank"
                                     class="btn btn-warning w-full bg-[#FFE200] font-extrabold text-black hover:bg-[#c79305] border-none duration-500">Konsultasi
                                     Desain
                                 </a>
                                 <div class="map-container">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7914.8693808254975!2d112.782346!3d-7.304963000000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7faf5f5654195%3A0x240bfb7744077396!2sJunior%20High%20School%20State%2052%20of%20SURABAYA!5e0!3m2!1sen!2sid!4v1690790159441!5m2!1sen!2sid"
-                                        width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    {!! str_replace('<iframe', '<iframe class="custom-map"' , $information->google_map) !!}
                                 </div>
                             </div>
                         </div>

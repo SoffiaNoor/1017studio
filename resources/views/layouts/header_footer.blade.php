@@ -276,7 +276,7 @@
                 </div>
 
                 <div class="fixed bottom-20 right-10 z-10">
-                    <a title="Chat Whatsapp" href="{{url('/kontak')}}" target="_blank"
+                    <a title="Chat Whatsapp" href="{{$information->link_wa}}" target="_blank"
                         class="block rounded-full transition-all shadow transform hover:scale-110 hover:rotate-12">
                         <img class="object-cover object-center lg:w-36 lg:h-36 w-16 h-16"
                             src="{{ asset('assets/img/order.png') }}" alt="Saya mau pesan">
@@ -313,7 +313,7 @@
                                             </li>
                                             <li>
                                                 <a class="font-bold block pb-2 text-xl" style="color:#FFE200"
-                                                    href="{{url('/kontak')}}">Saya mau pesan</a>
+                                                    href="{{$information->link_wa}}" target="_blank">Saya mau pesan</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -347,7 +347,7 @@
                         <div class="flex flex-wrap items-center md:justify-between justify-center">
                             <div class="w-full md:w-4/12 px-4 mx-auto text-center">
                                 <div class="text-sm text-white font-semibold py-1">
-                                    © 2023 Copyright 1017studios All Right reserved
+                                    © {{ date('Y') }} Copyright 1017studios All Right reserved
                                 </div>
                             </div>
                         </div>

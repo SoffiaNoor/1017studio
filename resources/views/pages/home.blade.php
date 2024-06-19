@@ -58,7 +58,7 @@
                             <a class="text-header-4" href="#">
                                 <p class="wow fadeInLeft mb-3" data-wow-delay="0.3s" >Baca Selengkapnya ...</p>
                             </a>
-                            <a href="#" class="btn btn-rounded font-weight-bold ml-lg-0 wow fadeInLeft button-header" data-wow-delay="0.3s">
+                            <a href="{{$information->link_wa}}" class="btn btn-rounded font-weight-bold ml-lg-0 wow fadeInLeft button-header" data-wow-delay="0.3s">
                                 SAYA MAU PESAN !!
                             </a>
                         </div>
@@ -349,7 +349,7 @@
 
 <div class="mb2">
     <div class="button-center">
-        <a href="#" class="btn btn-rounded font-weight-bold ml-lg-0 wow fadeInLeft button-header" data-wow-delay="0.3s">
+        <a href="{{$information->link_wa}}" class="btn btn-rounded font-weight-bold ml-lg-0 wow fadeInLeft button-header" data-wow-delay="0.3s">
             SAYA MAU PESAN !!
         </a>
     </div>
