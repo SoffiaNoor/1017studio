@@ -32,9 +32,9 @@ class KontakController extends Controller
 
         Kontak::create($validatedData);
 
-        Mail::to($formData['email'])->send(new TestEmail($formData));
+        // Mail::to($formData['email'])->send(new TestEmail($formData));
 
-        Mail::to('1017website@gmail.com')->send(new ContactMail($formData));
+        // Mail::to('1017website@gmail.com')->send(new ContactMail($formData));
 
         return redirect()->route('kontak.store');
     }
