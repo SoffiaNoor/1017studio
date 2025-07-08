@@ -317,8 +317,8 @@
                                     {{-- Data awal ditampilkan via script --}}
                                 </div>
 
-                                <div class="text-center mt-6">
-                                    <button id="load-more" class="filter-btn sm:text-sm duration-300 font-extrabold shadow-md hover:shadow-xl text-center rounded-full sm:w-[200px] px-6 py-4 bg-[#FFE200] text-black">Load More</button>
+                                <div class="text-center">
+                                    <button id="load-more" class="filter-btn sm:text-sm duration-300 font-extrabold shadow-md hover:shadow-xl text-center rounded-full sm:w-[200px] px-6 py-4 bg-[#FFE200] text-black my-10">Load More</button>
                                 </div>
                             </div>
                             <div class="flex flex-col sm:flex-row mt-7 items-center justify-center space-y-6 sm:space-y-0 hidden">
@@ -336,7 +336,7 @@
                             </div>
                         </section>
 
-                        <section class="w-full my-5" style="background-image: url({{env('APP_URL')}}{{$information->image}});background-size: cover;">
+                        <section class="w-full" style="background-image: url({{env('APP_URL')}}{{$information->image}});background-size: cover;">
                             <div class="relative max-w-screen-xl px-4 sm:px-8 pb-20 mx-auto grid gap-x-6 overflow-hidden"="">
                                 <div class="col-span-12 lg:col-span-6 sm:hidden mb-8"="">
                                     <div class="w-full"><img src="/_nuxt/img/buy-and-trade.69b9f7b.webp" alt="" class="mt-4 sm:-mt-4"></div>
