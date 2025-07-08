@@ -34,3 +34,5 @@ Route::get('/thank_you',[ThankYouController::class,'show']);
 Route::post('/thank_you', [KontakController::class, 'store'])->name('kontak.store');
 Route::get('/berita', [BeritaController::class, 'index']);
 Route::get('/berita/{id}', [BeritaController::class, 'detail_berita']);
+Route::get('/portfolio/load', [WelcomeController::class, 'getPortfolioItems'])->name('portfolio.load');
+

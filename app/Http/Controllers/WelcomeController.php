@@ -34,6 +34,16 @@ class WelcomeController extends Controller
         return view('portofolio', compact("portfolio", "information"));
     }
 
+    public function getPortfolioItems(Request $request)
+    {
+        $limit = $request->input('limit', 6); // jumlah awal default 6
+        $offset = $request->input('offset', 0);
+
+        $items = Portfolio::skip($offset)->take($limit)->get();
+
+        return response()->json($items);
+    }
+
     public function testimoni()
     {
         $testimoni = Testimonial::all();

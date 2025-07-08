@@ -41,7 +41,11 @@
     <!--Font-->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Di <head> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
+    <!-- Sebelum </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
@@ -163,6 +167,24 @@
 
             100% {
                 transform: rotate(0deg);
+            }
+        }
+
+        @layer utilities {
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(1rem);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animate-fade-in-up {
+                animation: fadeInUp 0.5s ease-out forwards;
             }
         }
     </style>
@@ -291,16 +313,15 @@
 
                         <section class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-0 sm:py-8 rounded-[2.25rem] transform lg:-translate-y-12">
                             <div id="portfolio-home" class="flex flex-col flex-wrap md:py-6 sm:flex-row items-center justify-center space-y-6 sm:space-y-0 -mx-4">
-                                @foreach($portfolio as $item)
-                                <div class="group portfolio-item {{ $item->jenis_tag_id == 1 ? 'logo' : ($item->jenis_tag_id == 2 ? 'website' : '') }} relative sm:w-1/3 overflow-hidden space-y-6 lg:px-8 px-6 lg:py-8 aos-init">
-                                    <img src="{{env('APP_URL')}}{{$item->image}}" class="img-fluid object-cover w-full" alt="">
-                                    <div class="absolute top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-[#FFE200] font-extrabold lg:text-4xl opacity-0 group-hover:opacity-100 duration-500 h-0 group-hover:bg-opacity-100 group-hover:h-full">
-                                        <img src="{{env('APP_URL')}}{{$information->logo_company}}" style="width:40%" />
-                                    </div>
+                                <div id="portfolio-container" class="flex flex-wrap -mx-4">
+                                    {{-- Data awal ditampilkan via script --}}
                                 </div>
-                                @endforeach
+
+                                <div class="text-center mt-6">
+                                    <button id="load-more" class="filter-btn sm:text-sm duration-300 font-extrabold shadow-md hover:shadow-xl text-center rounded-full sm:w-[200px] px-6 py-4 bg-[#FFE200] text-black">Load More</button>
+                                </div>
                             </div>
-                            <div class="flex flex-col sm:flex-row mt-7 items-center justify-center space-y-6 sm:space-y-0">
+                            <div class="flex flex-col sm:flex-row mt-7 items-center justify-center space-y-6 sm:space-y-0 hidden">
                                 <div class="flex flex-wrap justify-center space-y-6 sm:space-y-0 sm:space-x-6 pt-3 pb-3 mt-2 aos-init aos-animate">
                                     <button type="button" class="filter-btn lg:text-lg duration-300 font-extrabold shadow-md hover:shadow-xl text-center rounded-full lg:w-[200px] px-6 py-4 bg-[#FFE200] text-black" data-filter="all">
                                         ALL
@@ -315,7 +336,7 @@
                             </div>
                         </section>
 
-                        <section class="w-full my-10" style="background-image: url({{env('APP_URL')}}{{$information->image}});background-size: cover;">
+                        <section class="w-full" style="background-image: url({{env('APP_URL')}}{{$information->image}});background-size: cover;">
                             <div class="relative max-w-screen-xl px-4 sm:px-8 pb-20 mx-auto grid gap-x-6 overflow-hidden"="">
                                 <div class="col-span-12 lg:col-span-6 sm:hidden mb-8"="">
                                     <div class="w-full"><img src="/_nuxt/img/buy-and-trade.69b9f7b.webp" alt="" class="mt-4 sm:-mt-4"></div>
@@ -471,7 +492,6 @@
             </div>
         </div>
     </div>
-    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -593,6 +613,90 @@
             });
         }
     </script>
+
+    <script>
+        let offset = 0;
+        const limit = 6;
+
+        function renderSkeleton() {
+            let skeleton = '';
+            for (let i = 0; i < limit; i++) {
+                skeleton += `
+        <div class="sm:w-1/3 px-4 mb-6 animate-pulse">
+            <div class="bg-gray-200 h-48 w-full rounded"></div>
+        </div>`;
+            }
+            return skeleton;
+        }
+
+        function loadPortfolio() {
+            $('#load-more').prop('disabled', true).text('Loading...');
+            $('#portfolio-container').append(renderSkeleton());
+
+            $.get('{{ route("portfolio.load") }}', {
+                offset,
+                limit
+            }, function(data) {
+                $('.animate-pulse').remove();
+
+                data.forEach(item => {
+                    const jenis = item.jenis_tag_id == 1 ? 'logo' : (item.jenis_tag_id == 2 ? 'website' : '');
+                    const html = `
+                <a href="{{ env('APP_URL') }}${item.image}" class="glightbox group portfolio-item ${jenis} relative sm:w-1/3 overflow-hidden px-4 mb-6" data-gallery="portfolio-gallery">
+                    <img src="{{ env('APP_URL') }}${item.image}" class="img-fluid object-cover w-full rounded" alt="">
+                    <div class="absolute top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-[#FFE200] font-extrabold lg:text-4xl opacity-0 group-hover:opacity-100 duration-500 group-hover:h-full">
+                        <img src="{{ env('APP_URL') }}{{ $information->logo_company }}" style="width:40%" />
+                    </div>
+                </a>
+            `;
+                    $('#portfolio-container').append(html);
+                });
+
+                offset += limit;
+                $('#load-more').prop('disabled', false).text('Load More');
+                if (data.length < limit) $('#load-more').hide();
+
+                // ✅ Re-init GLightbox untuk gambar baru
+                GLightbox({
+                    selector: '.glightbox'
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            loadPortfolio();
+
+            $('#load-more').on('click', function() {
+                loadPortfolio();
+            });
+        });
+
+        function openModal(imageUrl) {
+            $('#modalImage').attr('src', imageUrl);
+            $('#imageModal').removeClass('hidden').addClass('flex');
+        }
+
+        function closeModal() {
+            $('#imageModal').addClass('hidden').removeClass('flex');
+        }
+
+        $(document).on('click', '#imageModal', function(e) {
+            if (e.target.id === 'imageModal') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <script>
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true,
+            draggable: true
+        });
+    </script>
+
 </body>
 
 </html>
